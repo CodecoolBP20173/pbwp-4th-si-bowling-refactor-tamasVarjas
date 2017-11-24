@@ -9,11 +9,9 @@ def score(game):
         else:
             result += get_value(game[i])
         if frame < 10 and get_value(game[i]) == 10:
-            if game[i] == OUTCOMES["spare"]:
-                result += get_value(game[i + 1])
-            elif game[i] in OUTCOMES["strike"]:
-                result += get_value(game[i + 1])
-                if game[i + 2] == '/':
+            result += get_value(game[i + 1])
+            if game[i] in OUTCOMES["strike"]:
+                if game[i + 2] == OUTCOMES["spare"]:
                     result += 10 - get_value(game[i + 1])
                 else:
                     result += get_value(game[i + 2])
