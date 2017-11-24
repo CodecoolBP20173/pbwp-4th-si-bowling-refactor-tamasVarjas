@@ -1,4 +1,6 @@
 def score(game):
+    NUMBER_OF_FRAMES = 10
+    NUMBER_OF_PINS = 10
     OUTCOMES = {"strike": ("X", "x"), "spare": "/"}
     result = 0
     last = 0
@@ -6,14 +8,14 @@ def score(game):
     in_first_half = True
     for i in range(len(game)):
         if game[i] == OUTCOMES["spare"]:
-            result += 10 - last
+            result += NUMBER_OF_PINS - last
         else:
             result += get_value(game[i])
-        if frame < 10 and get_value(game[i]) == 10:
+        if frame < NUMBER_OF_FRAMES and get_value(game[i]) == NUMBER_OF_PINS:
             result += get_value(game[i + 1])
             if game[i] in OUTCOMES["strike"]:
                 if game[i + 2] == OUTCOMES["spare"]:
-                    result += 10 - get_value(game[i + 1])
+                    result += NUMBER_OF_PINS - get_value(game[i + 1])
                 else:
                     result += get_value(game[i + 2])
         last = get_value(game[i])
