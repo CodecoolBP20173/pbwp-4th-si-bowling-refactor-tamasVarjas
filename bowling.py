@@ -30,15 +30,13 @@ def score(game):
 
 
 def get_value(char):
-    if char == '1' or char == '2' or char == '3' or \
-       char == '4' or char == '5' or char == '6' or \
-       char == '7' or char == '8' or char == '9':
+    POSSIBLE_CHAR = {"numbers": ('1', '2', '3', '4', '5', '6', '7', '8', '9'),
+                     "strike": ("X", "x"), "spare": "/", "miss": "-"}
+    if char in POSSIBLE_CHAR["numbers"]:
         return int(char)
-    elif char == 'X' or char == 'x':
+    elif char in POSSIBLE_CHAR["strike"] or char == POSSIBLE_CHAR["spare"]:
         return 10
-    elif char == '/':
-        return 10
-    elif char == '-':
+    elif char == POSSIBLE_CHAR["miss"]:
         return 0
     else:
         raise ValueError()
