@@ -1,6 +1,7 @@
 def score(game):
     OUTCOMES = {"strike": ("X", "x"), "spare": "/"}
     result = 0
+    last = 0
     frame = 1
     in_first_half = True
     for i in range(len(game)):
@@ -16,15 +17,11 @@ def score(game):
                 else:
                     result += get_value(game[i + 2])
         last = get_value(game[i])
-        if not in_first_half:
+        if not in_first_half or game[i] in OUTCOMES["strike"]:
             frame += 1
-        if in_first_half:
-            in_first_half = False
+            in_first_half = True
         else:
-            in_first_half = True
-        if game[i] in OUTCOMES["strike"]:
-            in_first_half = True
-            frame += 1
+            in_first_half = False
     return result
 
 
